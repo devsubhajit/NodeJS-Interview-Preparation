@@ -11,6 +11,9 @@
 |4  | [How to create custom event emitter?](#how-to-create-custom-event-emiter) |
 |5  | [Create a basic server?](#create-a-basic-server) |
 |6  | [What is callback hell?](#what-is-callback-hell) |
+|7  | [How to handle call back function?](#how-to-handle-call-back-function) |
+|8  | [What is API?](#What-is-API) |
+|9  | [Why does a REST API should be stateless?](#Why-does-a-REST-API-should-be-stateless) |
 
 
 
@@ -118,3 +121,73 @@
     From the example as you can see, we are calling functions inside another continuously creates a callback hell.
 
 **[⬆ Back to Top](#table-of-contents)**
+
+7. ### [How to handle call back function?](#how-to-handle-call-back-function)
+
+    To get rid of callback hell, **promise** was introduced in ES6, and later on in ES8 **async await** method has been introduced.
+
+    By using **promise chain** or **async await** we can solve collback hell issue.
+
+    * Promise Chain
+
+            promise1(data).then(data => {
+                return promis2;
+            })
+            .then(res => {
+                return promise3;
+            })
+            .then(() => {
+                console.log('all done!');
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    Ase you can see instead of triangle code, promise chain is a flat expression of code, which is a lot easier than callback.
+
+    * Async Await
+            const asyncFunc = async ()=>{
+
+                const data_1 = await promis1;
+
+                const data_2 = await promise2;
+
+                await promise3;
+
+            }
+    Async method is lot easier than both promise chain and callback hell
+
+**[⬆ Back to Top](#table-of-contents)**
+
+8. ### [What is API?](#What-is-API)
+
+    Api Stands for **Application Programing Interface**, which basically talk between two softwars applications.
+
+**[⬆ Back to Top](#table-of-contents)**
+
+9. ### [Why does a REST API should be stateless?](#Why-does-a-REST-API-should-be-stateless)
+
+    **State** means an inital data storage which keeps updateing on the user interaction or for any changes in the application. If in any api end point, we want to move to next page (in case of pagination), a state need to be maintained in server side, which will have the initial value of current page. So mainting this kind of operation on server side is very complex or bad idea. That's why Rest APis should be stateless.
+
+    * with state
+
+            // api
+            Get  /users/nextPage
+
+            // State on Server
+            nextPage = currentPage + 1;
+            send(nextPage);
+
+    * Without state / stateless
+            
+            //api
+            Get /users/6
+
+            //Web Server
+            send(6)
+
+
+
+**[⬆ Back to Top](#table-of-contents)**
+
+
+
