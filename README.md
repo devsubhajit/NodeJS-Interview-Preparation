@@ -10,6 +10,7 @@
 |3  | [What is event emitter?](#what-is-event-emitter) |
 |4  | [How to create custom event emitter?](#how-to-create-custom-event-emiter) |
 |5  | [Create a basic server?](#create-a-basic-server) |
+|6  | [What is callback hell?](#what-is-callback-hell) |
 
 
 
@@ -42,6 +43,12 @@
 3. ### [What is event emitter?](#what-is-event-emitter)
     In javascript, which runs on browser, has many events which is interacted by user, such as, click, double click, keypress, etc. Similerly in backend in nodejs, there is a module **events** which allow us to create similar system. This module has a class EventEmitter which offers us to crate custom events as well.
 
+
+**[⬆ Back to Top](#table-of-contents)**
+
+4. ### [How to create custom event emitter?](#how-to-create-custom-event-emiter)
+    Creating customer event emitter is a lot easier than we are thinking. Lets start creating a custom event emitter
+
         const EventEmitter = require("events);
         const myEvents = new EventEmitter();
 
@@ -63,11 +70,9 @@
         })
         salesEvent.emit('sale', 10)
 
-
-
 **[⬆ Back to Top](#table-of-contents)**
 
-4. ### [Create a basic server?](#create-a-basic-server)
+5. ### [Create a basic server?](#create-a-basic-server)
 
         const http = require("http");
         const server = http.createServer();
@@ -84,5 +89,32 @@
         server.listen('8080', '127.0.0.1',()=>{
             console.log("Server started on port 8080")
         })
+
+**[⬆ Back to Top](#table-of-contents)**
+
+6. ### [What is callback hell?](#what-is-callback-hell)
+    A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action.
+
+    NodeJs / Javascript is desigend to be non-blocking, for that we have callback functions. But callback inside callback becomes very challening to manage. This creates a triangle pattern in code view. This is known as callback hell.
+
+        const myFunction = () => {
+            setTimeout(() => {
+                console.log("level 1");
+                setTimeout(() => {
+                    console.log("level 2");
+                    setTimeout(() => {
+                        console.log("level 3");
+                        setTimeout(() => {
+                            console.log("level 4");
+                            setTimeout(() => {
+                                console.log("level 4");
+                            }, 1000);
+                        }, 1000);
+                    }, 1000);
+                }, 1000);
+            }, 1000);
+        }
+
+    From the example as you can see, we are calling functions inside another continuously creates a callback hell.
 
 **[⬆ Back to Top](#table-of-contents)**
