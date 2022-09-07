@@ -52,26 +52,32 @@
 4. ### [How to create custom event emitter?](#how-to-create-custom-event-emiter)
     Creating customer event emitter is a lot easier than we are thinking. Lets start creating a custom event emitter
 
-        const EventEmitter = require("events);
-        const myEvents = new EventEmitter();
+    * Function Constructor way
 
-        // function constructor way
-        myEvents.on("start", ()=>{
-            console.log("Event started!")
-        })
-        myEvents.emit("start");
-        // class constructor way
-        class Sales extends EventEmitter {
-            constructor(){
-                super();
+            const EventEmitter = require("events);
+
+            const myEvents = new EventEmitter();
+            myEvents.emit("start");
+            
+            myEvents.on("start", ()=>{
+                console.log("Event started!")
+            })
+            
+
+    * ES6 Class way
+            class Sales extends EventEmitter {
+                constructor(){
+                    super();
+                }
             }
-        }
 
-        const salesEvent = new Sales();
-        salesEvent.on('sale',stock=>{
-            console.log(`${stock} stocks has been sold`);
-        })
-        salesEvent.emit('sale', 10)
+            const salesEvent = new Sales();
+            salesEvent.emit('sale', 10)
+
+            salesEvent.on('sale',stock=>{
+                console.log(`${stock} stocks has been sold`);
+            })
+            
 
 **[⬆ Back to Top](#table-of-contents)**
 
